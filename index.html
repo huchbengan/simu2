@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SimuCrowd - Market Simulation Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-main: #000000;
+        --bg-sidebar: #000000;
+        --bg-card: #18181b; /* zinc-900 */
+        --bg-surface: #09090b; /* zinc-950 */
+        --text-main: #ffffff;
+        --text-secondary: #d4d4d8; /* zinc-300 */
+        --text-muted: #a1a1aa; /* zinc-400 */
+        --border-main: #27272a; /* zinc-800 */
+        --border-hover: #3f3f46; /* zinc-700 */
+        --shadow-card: none;
+      }
+
+      html {
+        font-size: 18px; /* Global size increase (+2px from default 16px) */
+      }
+
+      body.light-theme {
+        --bg-main: #ffffff; /* Pure white canvas for the center */
+        --bg-sidebar: #f8f9fa; /* Slate-50 for distinct separation */
+        --bg-card: #ffffff;
+        --bg-surface: #ffffff;
+        --text-main: #111827; /* Ink Blue/Black for titles */
+        --text-secondary: #4b5563; /* Deep Gray for readable descriptions */
+        --text-muted: #6b7280; /* Slate-500 */
+        --border-main: #e5e7eb; /* Slate-200 */
+        --border-hover: #d1d5db; /* Slate-300 */
+        --shadow-card: 0 10px 40px -5px rgba(0, 0, 0, 0.04), 0 2px 10px -2px rgba(0,0,0,0.02); /* Ceramic float feel */
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-main);
+        color: var(--text-main);
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      /* Helper classes to enforce theme variables */
+      .theme-bg { background-color: var(--bg-main) !important; }
+      .theme-sidebar { background-color: var(--bg-sidebar) !important; border-color: var(--border-main) !important; }
+      .theme-card { background-color: var(--bg-card) !important; border-color: var(--border-main) !important; }
+      .theme-surface { background-color: var(--bg-surface) !important; border-color: var(--border-main) !important; }
+      
+      .theme-text { color: var(--text-main) !important; }
+      .theme-text-secondary { color: var(--text-secondary) !important; }
+      .theme-text-muted { color: var(--text-muted) !important; }
+      
+      .theme-border { border-color: var(--border-main) !important; }
+      .theme-shadow { box-shadow: var(--shadow-card) !important; }
+
+      /* Light Mode Overrides for Tailwind Utilities */
+      /* These ensure that hardcoded dark classes swap correctly in light mode */
+      body.light-theme .bg-black { background-color: var(--bg-sidebar) !important; }
+      body.light-theme .bg-zinc-950 { background-color: var(--bg-surface) !important; }
+      body.light-theme .bg-zinc-900 { background-color: var(--bg-card) !important; }
+      body.light-theme .bg-zinc-800 { background-color: #f1f5f9 !important; } /* Light Gray for secondary elements */
+      
+      body.light-theme .border-zinc-800 { border-color: var(--border-main) !important; }
+      body.light-theme .border-zinc-700 { border-color: var(--border-hover) !important; }
+      
+      body.light-theme .text-white { color: var(--text-main) !important; }
+      body.light-theme .text-zinc-100 { color: var(--text-main) !important; }
+      body.light-theme .text-zinc-200 { color: var(--text-secondary) !important; }
+      body.light-theme .text-zinc-300 { color: var(--text-secondary) !important; }
+      body.light-theme .text-zinc-400 { color: var(--text-muted) !important; }
+      body.light-theme .text-zinc-500 { color: var(--text-muted) !important; }
+      
+      /* Specific Shadows for Light Mode - Overriding default shadow classes if needed */
+      body.light-theme .shadow-2xl { box-shadow: var(--shadow-card) !important; }
+
+      /* Custom scrollbar for better aesthetics */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg-surface);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border-main);
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--text-muted);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.37.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "recharts": "https://esm.sh/recharts@^3.6.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.1/package/xlsx.mjs"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
